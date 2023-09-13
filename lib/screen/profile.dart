@@ -10,10 +10,29 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  UserModel user = UserModel();
+  UserModel user = UserModel(
+    name: 'Jamilu Salisu',
+    slackUsername: '@mjsalisu',
+    gitHubUsername: '@mjsalisu',
+    bio: "I am a Software Engineer",
+  );
 
   @override
   Widget build(BuildContext context) {
+    final UserModel? userModel =
+        ModalRoute.of(context)?.settings.arguments as UserModel?;
+
+    if (userModel != null) {
+      setState(
+        () {
+          user.name = userModel.name;
+          user.slackUsername = userModel.slackUsername;
+          user.gitHubUsername = userModel.gitHubUsername;
+          user.bio = userModel.bio;
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('My CV Profile'),
@@ -74,8 +93,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/edit', arguments: {});
+        onPressed: () async {
+          final result =
+              await Navigator.pushNamed(context, '/edit', arguments: {});
+
+          if (result != null) {
+            setState(
+              () {},
+            );
+          }
         },
         child: const Icon(Icons.edit),
       ),

@@ -86,14 +86,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     Navigator.pushNamed(
       context,
       '/',
-      arguments: {
-        UserModel(
-          name: name,
-          slackUsername: slackUsername,
-          gitHubUsername: gitHubHandle,
-          bio: bio,
-        ),
-      },
+      arguments: UserModel(
+        name: name,
+        slackUsername: slackUsername,
+        gitHubUsername: gitHubHandle,
+        bio: bio,
+      ),
     );
   }
 }
