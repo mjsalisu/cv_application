@@ -1,3 +1,5 @@
+import 'package:cv_application/model/user_model.dart';
+import 'package:cv_application/widget/social_handle.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -8,6 +10,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  UserModel user = UserModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +33,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Jamilu Salisu',
-              style: TextStyle(
+            Text(
+              user.name,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+            Text(
+              user.bio,
               maxLines: 6,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w200,
               ),
             ),
@@ -56,32 +60,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const ListTile(
-              title: Text('@mjsalisu'),
-              subtitle: Text(
-                'Slack',
-                style: TextStyle(
-                  color: Colors.black26,
-                ),
-              ),
-              trailing: Icon(Icons.message),
+            SocialHandle(
+              username: user.slackUsername,
+              socailHandleName: 'Slack',
+              icon: Icons.message,
             ),
-            const ListTile(
-              title: Text('@mjsalisu'),
-              subtitle: Text(
-                'GitHub',
-                style: TextStyle(
-                  color: Colors.black26,
-                ),
-              ),
-              trailing: Icon(Icons.code),
+            SocialHandle(
+              username: user.gitHubUsername,
+              socailHandleName: 'GitHub',
+              icon: Icons.code,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/edit');
+          Navigator.pushNamed(context, '/edit', arguments: {});
         },
         child: const Icon(Icons.edit),
       ),

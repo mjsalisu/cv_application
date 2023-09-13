@@ -1,4 +1,5 @@
 import 'package:cv_application/model/user_model.dart';
+import 'package:cv_application/widget/text_field.dart';
 import 'package:flutter/material.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -45,32 +46,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          TextField(
-            controller: nameController,
-            decoration: const InputDecoration(
-              labelText: 'Full Name',
-            ),
+          MyTextFormField(
+            controllerName: nameController,
+            label: 'Full name',
           ),
           const SizedBox(height: 15),
-          TextField(
-            controller: slackUsernameController,
-            decoration: const InputDecoration(
-              labelText: 'Slack Username',
-            ),
+          MyTextFormField(
+            controllerName: slackUsernameController,
+            label: 'Slack Username',
           ),
           const SizedBox(height: 15),
-          TextField(
-            controller: gitHubHandleController,
-            decoration: const InputDecoration(
-              labelText: 'GitHub Username',
-            ),
+          MyTextFormField(
+            controllerName: gitHubHandleController,
+            label: 'GitHub Username',
           ),
           const SizedBox(height: 15),
-          TextField(
-            controller: bioController,
-            decoration: const InputDecoration(
-              labelText: 'Bio',
-            ),
+          MyTextFormField(
+            controllerName: bioController,
+            label: 'Bio',
           ),
           const SizedBox(height: 40),
           ElevatedButton(
