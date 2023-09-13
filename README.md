@@ -1,6 +1,6 @@
 ## Stage Two Task: Mobile CV Application
 
-[Appetize URL Preview](https://appetize.io/embed/rkrmsdlvjsvtasikonyznjulfe)
+[Appetize URL Preview](https://appetize.io/app/rkrmsdlvjsvtasikonyznjulfe)
 
 ### Objective:
 
