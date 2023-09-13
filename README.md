@@ -1,5 +1,7 @@
 ## Stage Two Task: Mobile CV Application
 
+[Appetize URL Preview](https://appetize.io/embed/rkrmsdlvjsvtasikonyznjulfe)
+
 ### Objective:
 
 Develop and design a mobile application serving as a comprehensive CV, showcasing personal and professional details. The app should enable both viewing and editing of the provided CV information.
