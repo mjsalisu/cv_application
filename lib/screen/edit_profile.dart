@@ -83,11 +83,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final gitHubHandle = gitHubHandleController.text;
     final bio = bioController.text;
 
-    UserModel(
-      name: name,
-      slackUsername: slackUsername,
-      gitHubUsername: gitHubHandle,
-      bio: bio,
+    Navigator.pushNamed(
+      context,
+      '/',
+      arguments: {
+        UserModel(
+          name: name,
+          slackUsername: slackUsername,
+          gitHubUsername: gitHubHandle,
+          bio: bio,
+        ),
+      },
     );
   }
 }
