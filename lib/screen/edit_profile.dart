@@ -5,33 +5,30 @@ import 'package:flutter/material.dart';
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({
     super.key,
-    this.name,
-    this.slackUsername,
-    this.gitHubHandle,
-    this.bio,
+    required this.user,
   });
-  final String? name;
-  final String? slackUsername;
-  final String? gitHubHandle;
-  final String? bio;
+  final UserModel user;
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  final nameController = TextEditingController();
-  final slackUsernameController = TextEditingController();
-  final gitHubHandleController = TextEditingController();
-  final bioController = TextEditingController();
+  late TextEditingController nameController;
+  late TextEditingController slackUsernameController;
+  late TextEditingController gitHubHandleController;
+  late TextEditingController bioController;
 
   @override
   void initState() {
     super.initState();
-    nameController.text = widget.name ?? '';
-    slackUsernameController.text = widget.slackUsername ?? '';
-    gitHubHandleController.text = widget.gitHubHandle ?? '';
-    bioController.text = widget.bio ?? '';
+    // Initialize controllers with the initial user data
+    nameController = TextEditingController(text: widget.user.name);
+    slackUsernameController =
+        TextEditingController(text: widget.user.slackUsername);
+    gitHubHandleController =
+        TextEditingController(text: widget.user.gitHubUsername);
+    bioController = TextEditingController(text: widget.user.bio);
   }
 
   @override
@@ -39,7 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Manage CV Profile',
+          'Edit Profile',
         ),
         centerTitle: true,
       ),
@@ -78,20 +75,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   Future<void> onProfileUpdateAction() async {
-    final name = nameController.text;
-    final slackUsername = slackUsernameController.text;
-    final gitHubHandle = gitHubHandleController.text;
-    final bio = bioController.text;
-
-    Navigator.pushNamed(
-      context,
-      '/',
-      arguments: UserModel(
-        name: name,
-        slackUsername: slackUsername,
-        gitHubUsername: gitHubHandle,
-        bio: bio,
-      ),
+    final updatedUser = UserModel(
+      name: nameController.text,
+      slackUsername: slackUsernameController.text,
+      gitHubUsername: gitHubHandleController.text,
+      bio: bioController.text,
     );
+    Navigator.pop(context, updatedUser);
   }
 }

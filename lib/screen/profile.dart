@@ -1,4 +1,5 @@
 import 'package:cv_application/model/user_model.dart';
+import 'package:cv_application/screen/edit_profile.dart';
 import 'package:cv_application/widget/social_handle.dart';
 import 'package:flutter/material.dart';
 
@@ -94,13 +95,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final result =
-              await Navigator.pushNamed(context, '/edit', arguments: {});
+          final updatedUser = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditProfileScreen(
+                user: user,
+              ),
+            ),
+          );
 
-          if (result != null) {
-            setState(
-              () {},
-            );
+          if (updatedUser != null) {
+            setState(() {
+              user = updatedUser;
+            });
           }
         },
         child: const Icon(Icons.edit),
